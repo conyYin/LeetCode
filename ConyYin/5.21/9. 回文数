@@ -1,0 +1,16 @@
+class Solution {
+    public boolean isPalindrome(int x) {
+        if(x<0) return false;
+        int result=0;
+        int ori=x;
+        while(x>0){
+            int temp=x%10;
+            x/=10;
+            result=result*10+temp;
+        }
+        if(ori==result){return true;}
+        else return false;
+    }
+}
+
+未考虑反转后产生的溢出问题，可以只反转一半进行比较
