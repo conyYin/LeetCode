@@ -1,0 +1,25 @@
+class Solution {
+    static Comparator<Integer> cmp = new Comparator<Integer>() {
+      public int compare(Integer e1, Integer e2) {
+        return e2 - e1;
+      }
+    };
+    public int lastStoneWeight(int[] stones) {
+        PriorityQueue<Integer> p=new PriorityQueue<>(cmp);
+        for(int i=0;i<stones.length;i++){
+            p.add(stones[i]);
+        }
+        while(p.size()>=2){
+            int m=p.poll();
+            int n=p.poll();
+            if(m!=n){
+                p.add(m-n);
+            }
+        }
+        if(p.size()==1){
+            return p.poll();
+        }else{
+            return 0;
+        }
+    }
+}
