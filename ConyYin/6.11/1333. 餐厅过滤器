@@ -1,0 +1,14 @@
+class Solution {
+    public List<Integer> filterRestaurants(int[][] restaurants, int veganFriendly, int maxPrice, int maxDistance) {
+        List<Integer> result = new ArrayList<>();
+        Arrays.stream(restaurants)
+                .filter(restaurant ->
+                        ((veganFriendly == 1 && restaurant[2] == 1) || veganFriendly == 0)
+                                && restaurant[3] <= maxPrice
+                                && restaurant[4] <= maxDistance)
+                .sorted((r1, r2) -> r1[1]==r2[1]?-r1[0]+r2[0]:-r1[1]+r2[1])
+                .forEach(restaurant->result.add(restaurant[0]));
+        return result;
+    }
+}
+
